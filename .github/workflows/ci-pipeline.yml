@@ -22,5 +22,5 @@ jobs:
         echo "Pulling and running Docker container..."
         docker run --rm \
           -e USER_CREDENTIALS="$USER_CREDENTIALS" \
-          ghcr.io/chayasndashora29/devsecops-sim:latest \
+          ghcr.io/chayandashora29/devsecops-sim:latest \
           "${{ inputs.username }}"
