@@ -1,0 +1,26 @@
+name: Vulnerable Pipeline Simulation
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: "Enter your username (Bash injection possible)"
+        required: true
+
+jobs:
+  vulnerable_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Login to GitHub Container Registry
+      run: echo ${{ secrets.GHCR_PAT }} | docker login ghcr.io -u yourusername --password-stdin
+
+    - name: Run Docker Container
+      env:
+        USER_CREDENTIALS: ${{ secrets.USER_CREDENTIALS }}
+      run: |
+        echo "Pulling and running Docker container..."
+        docker run --rm \
+          -e USER_CREDENTIALS="$USER_CREDENTIALS" \
+          ghcr.io/chayasndashora29/devsecops-sim:latest \
+          "${{ inputs.username }}"
