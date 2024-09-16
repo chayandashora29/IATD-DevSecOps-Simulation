@@ -1,4 +1,4 @@
-name: Vulnerable Pipeline Simulation
+name: Pipeline Injection Simulation
 
 on:
   workflow_dispatch:
